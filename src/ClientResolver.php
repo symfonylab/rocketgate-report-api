@@ -6,14 +6,27 @@ namespace SymfonyLab\RocketGateReport;
 
 class ClientResolver
 {
-    const HOST_DEV = 'https://dev-my.rocketgate.com/com/rocketgate/gateway/xml/';
-    const HOST_PROD = 'https://my.rocketgate.com/com/rocketgate/gateway/xml/';
+    /**
+     * @var string
+     */
+    private $prodHost;
+
+    /**
+     * @var string
+     */
+    private $devHost;
+
+    public function __construct(string $prodHost, string $devHost)
+    {
+        $this->prodHost = $prodHost;
+        $this->devHost = $devHost;
+    }
 
     public function resolve(MerchantInterface $merchant): \GuzzleHttp\Client
     {
-        $host = self::HOST_DEV;
+        $host = $this->devHost;
         if ($merchant->getEnv() === MerchantInterface::ENV_PROD) {
-            $host = self::HOST_PROD;
+            $host = $this->prodHost;
         }
 
         return new \GuzzleHttp\Client([
