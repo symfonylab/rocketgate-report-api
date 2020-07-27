@@ -8,7 +8,19 @@ use GuzzleHttp\Client;
 
 class AccessLogsCleaner
 {
-    const BASE_LINK = 'https://my.rocketgate.com';
+    /**
+     * @var string
+     */
+    private $baseLink;
+
+    /**
+     * AccessLogsCleaner constructor.
+     * @param string $baseLink
+     */
+    public function __construct(string $baseLink)
+    {
+        $this->baseLink = $baseLink;
+    }
 
     public function check(string $data): bool
     {
@@ -28,7 +40,7 @@ class AccessLogsCleaner
     public function clear(MerchantInterface $merchant)
     {
         $client = new Client([
-            'base_uri' => self::BASE_LINK,
+            'base_uri' => $this->baseLink,
             'http_errors' => false,
             'cookies' => true
         ]);
