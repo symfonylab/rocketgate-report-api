@@ -1,0 +1,25 @@
+{
+  "name": "symfonylab/rocketgate-report-api",
+  "description": "RocketGate report api",
+  "type": "library",
+  "license": "MIT",
+  "config": {
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "SymfonyLab\\RocketGateReport\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SymfonyLab\\RocketGateReport\\Tests\\": "tests/"
+    }
+  },
+  "require": {
+    "php": "^7.2",
+    "ext-json": "*",
+    "ext-simplexml": "*",
+    "guzzlehttp/guzzle": "^7.0"
+  }
+}
